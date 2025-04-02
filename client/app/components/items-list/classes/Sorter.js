@@ -55,7 +55,14 @@ export default class Sorter {
       return;
     }
     if (field === this.field) {
-      this.reverse = !this.reverse;
+      if (this.reverse) {
+        // If already reversed, clear the sort (third state)
+        this.field = null;
+        this.reverse = false;
+      } else {
+        // If not reversed, reverse it
+        this.reverse = true;
+      }
     } else {
       this.field = field;
       this.reverse = false;
