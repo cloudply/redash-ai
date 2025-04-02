@@ -55,8 +55,16 @@ export default class Sorter {
       return;
     }
     if (field === this.field) {
-      this.reverse = !this.reverse;
+      if (!this.reverse) {
+        // First click: ascending -> descending
+        this.reverse = true;
+      } else {
+        // Second click: descending -> no sort
+        this.field = null;
+        this.reverse = false;
+      }
     } else {
+      // New field: start with ascending
       this.field = field;
       this.reverse = false;
     }
